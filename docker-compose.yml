@@ -35,10 +35,7 @@ services:
     ports:
         - "9906:3306"
 
-  adminer:
-    image: adminer
-    ports:
-      - '8888:8080'
+
 
 volumes:
   mysql_data: 
