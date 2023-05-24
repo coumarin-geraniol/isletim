@@ -17,7 +17,15 @@ services:
       MYSQL_DB: limesurvey
     ports:
         - 8080:80
-  
+
+  monit:
+    build:
+      context: ./monit
+      dockerfile: Dockerfile
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "2812:2812"
   
   db:
     container_name: db
