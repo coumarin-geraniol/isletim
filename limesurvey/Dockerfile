@@ -1,9 +1,10 @@
-# Use PHP 8.0 with Apache as a base image
-FROM php:8.0-apache
+# Use PHP 8.0 with Apach as a base image
+FROM php:8.1-apache
 
 # Install necessary packages
 RUN apt-get update && apt-get upgrade -y \
-    && apt-get install -y libzip-dev zip unzip
+    && apt-get install -y libzip-dev zip unzip php8.1-imap  php8.1-ldap php8.1-gd \
+    phpenmod imap
 
 # Install PHP extensions
 RUN docker-php-ext-install mysqli pdo pdo_mysql zip \
