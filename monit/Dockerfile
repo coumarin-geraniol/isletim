@@ -9,7 +9,9 @@ RUN apt-get update && \
 COPY monitrc /etc/monit/
 
 # Set the permissions for the config file
-RUN chmod 0700 /etc/monit/monitrc
+RUN chmod 0700 /etc/monit/monitrc && \
+    ln -s /etc/monit/conf-available/apache2 /etc/monit/conf-enabled/ && \
+    service reload monit
 
 # Expose the Monit httpd port
 EXPOSE 2812
