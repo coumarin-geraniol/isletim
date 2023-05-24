@@ -26,7 +26,7 @@ $serverId = 0;
 // Define the server DNS name or IP Address
 // If encryption is enabled, make sure the name given here
 // corresponds to the certificate's identity
-$ldap_server[$serverId]['server'] = "ldap.mycompany.org";
+$ldap_server[$serverId]['server'] = "ldap.consttier.tech";
 
 // Define the TCP port on which the LDAP server is listenning
 // This should be 389 for standard LDAP servers
@@ -35,7 +35,7 @@ $ldap_server[$serverId]['port'] = "636";
 
 // Define the ldap protocol to use
 // 'ldapv2' and 'ldapv3' are supported
-$ldap_server[$serverId]['protoversion'] = "ldapv2";
+$ldap_server[$serverId]['protoversion'] = "ldapv3";
 
 // Define the encryption method to use
 // 'ldaps' is supported for 'ldapv2' servers
@@ -43,11 +43,11 @@ $ldap_server[$serverId]['protoversion'] = "ldapv2";
 // 'none' is supproted for no encryption at all
 // Don't forget to setup your CA's certificate in
 // the openldap ldap.conf file
-$ldap_server[$serverId]['encrypt'] = "ldaps";
+$ldap_server[$serverId]['encrypt'] = "none";
 
 // Define the referral option
 // 'false' is recommended for ActiveDirectory servers
-$ldap_server[$serverId]['referrals'] = false;
+$ldap_server[$serverId]['referrals'] = true;
 
 // Define the encoding used by the Ldap directory
 // You may omit this parameter (let it commented out)
@@ -62,8 +62,8 @@ $ldap_server[$serverId]['referrals'] = false;
 // you are authorized to read its content. Remeber as well that user's DN
 // in AD are in the form of CN=username,CN=Users,DC=WindowsDomainName,DC=mycompany,DC=org
 //
-$ldap_server[$serverId]['binddn']	= "uid=mybinduser,dc=mycompany,dc=org";
-$ldap_server[$serverId]['bindpw']	= "AsecretPassword";
+//$ldap_server[$serverId]['binddn']	= "uid=mybinduser,dc=mycompany,dc=org";
+//$ldap_server[$serverId]['bindpw']	= "AsecretPassword";
 
 /********* Copy for more definitions *****
  $serverId++;
