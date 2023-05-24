@@ -3,7 +3,7 @@
 
 // The MySQL service named in the docker-compose.yml.
 $host = 'db';
-
+ 
 // Database use name
 $user = 'MYSQL_USER';
 

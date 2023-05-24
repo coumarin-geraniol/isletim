@@ -12,6 +12,12 @@ services:
     volumes:
         - ./php/src:/var/www/html/
         - ./limesurvey/limesurvey:/var/www/html/limesurvey
+    environment:
+      MYSQL_HOST: db
+      MYSQL_USER: root
+      MYSQL_PORT: '3306'
+      MYSQL_PASSWORD: mynewpassword
+      MYSQL_DB: limesurvey
     ports:
         - 8080:80
   
