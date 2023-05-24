@@ -28,15 +28,15 @@ services:
     environment:
         MYSQL_ROOT_PASSWORD: mynewpassword
         MYSQL_DATABASE: limesurvey
-        MYSQL_USER: root
-        MYSQL_PASSWORD: mynewpassword
     volumes:
       - mysql_data:/var/lib/mysql
     ports:
         - "9906:3306"
 
-
+  adminer:
+    image: adminer
+    ports:
+      - '8888:8080'
 
 volumes:
   mysql_data: 
- 
