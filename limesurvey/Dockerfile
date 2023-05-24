@@ -3,7 +3,7 @@ FROM php:8.1-apache
 
 # Install necessary packages
 RUN apt-get update && apt-get upgrade -y \
-    && apt-get install -y libzip-dev zip unzip php8.1-imap  php8.1-ldap php8.1-gd \
+    && apt-get install -y libzip-dev zip unzip php-imap  php-ldap php-gd \
     phpenmod imap
 
 # Install PHP extensions
