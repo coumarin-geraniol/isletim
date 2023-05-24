@@ -11,8 +11,8 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql zip \
 
 COPY ./limesurvey.conf /etc/apache2/sites-available/
 
-
-RUN chown -R www-data:www-data /var/www/html/limesurvey && \
+RUN mkdir -p /var/www/html/limesurvey && \
+    chown -R www-data:www-data /var/www/html/limesurvey && \
     chmod -R 755 /var/www/html/limesurvey && \
     a2ensite limesurvey && \
     a2dissite 000-default.conf && \
