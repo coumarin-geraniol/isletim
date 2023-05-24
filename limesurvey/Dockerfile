@@ -1,13 +1,20 @@
-# Use PHP 8.0 with Apach as a base image
-FROM php:8.1-apache
+# Use PHP 8.0 with Apache as a base image
+FROM php:8.0-apache
 
 # Install necessary packages
 RUN apt-get update && apt-get upgrade -y \
-    && apt-get install -y libzip-dev zip unzip php-imap  php-ldap php-gd \
-    phpenmod imap
+    && apt-get install -y libzip-dev zip unzip \
+    && apt-get install -y libfreetype6-dev libjpeg62-turbo-dev libpng-dev \
+    && apt-get install -y libldap2-dev \
+    && apt-get install -y libc-client-dev libkrb5-dev
 
 # Install PHP extensions
-RUN docker-php-ext-install mysqli pdo pdo_mysql zip \
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) gd \
+    && docker-php-ext-install ldap \
+    && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
+    && docker-php-ext-install imap \
+    && docker-php-ext-install mysqli pdo pdo_mysql zip \
     && docker-php-ext-enable mysqli
 
 # Copy LimeSurvey directory and config file
