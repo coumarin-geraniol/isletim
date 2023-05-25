@@ -43,7 +43,7 @@ $ldap_server[$serverId]['protoversion'] = "ldapv3";
 // 'none' is supproted for no encryption at all
 // Don't forget to setup your CA's certificate in
 // the openldap ldap.conf file
-$ldap_server[$serverId]['encrypt'] = "none";
+$ldap_server[$serverId]['encrypt'] = "start-tls";
 
 // Define the referral option
 // 'false' is recommended for ActiveDirectory servers
