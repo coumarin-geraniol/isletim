@@ -22,7 +22,7 @@ services:
     logging:
       driver: "fluentd"
       options:
-        fluentd-address: fluentd:24224
+        fluentd-address: 172.26.0.6:24224
         tag: limesurvey.access
 
   monit_system:
@@ -93,3 +93,8 @@ services:
 volumes:
   mysql_data: 
   esdata:
+
+networks:
+  default:
+    external:
+      name: my_network
