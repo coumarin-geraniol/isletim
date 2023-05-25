@@ -2,7 +2,7 @@ version: '3'
 
 services: 
 
-  limesurvey:
+  limesurvey_system:
     container_name: limesurvey
     build:
         context: ./limesurvey
@@ -25,7 +25,7 @@ services:
         fluentd-address: system-fluentd:24224
         tag: limesurvey.access
 
-  monit:
+  monit_system:
     build:
       context: ./monit
       dockerfile: Dockerfile
@@ -34,7 +34,7 @@ services:
     ports:
       - "2813:2812"
   
-  db:
+  db_system:
     container_name: db
     image: mysql
     restart: always
@@ -46,13 +46,13 @@ services:
     ports:
         - "9907:3306"
 
-  adminer:
+  adminer_system:
     image: adminer
     ports:
       - '8889:8080'
 
 
-  fluentd: 
+  fluentd:
     build: ./fluentd
     links: # Sends incoming logs to the elasticsearch container.
       - elasticsearch
