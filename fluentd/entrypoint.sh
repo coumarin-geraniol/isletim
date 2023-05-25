@@ -14,7 +14,8 @@ if [ "${1#-}" != "$1" ]; then
     set -- fluentd "$@"
 fi
 
-# If user does not supply config file or plugins, use the defaultif [ "$1" = "fluentd" ]; then
+# If user does not supply config file or plugins, use the default
+if [ "$1" = "fluentd" ]; then
     if ! echo $@ | grep -e ' \-c' -e ' \-\-config' ; then
       set -- "$@" --config /fluentd/etc/${FLUENTD_CONF}
     fi
