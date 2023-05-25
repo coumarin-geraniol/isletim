@@ -17,6 +17,13 @@ services:
       MYSQL_DB: limesurvey
     ports:
         - 8080:80
+    links:
+      - fluentd
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: fluentd:24224
+        tag: limesurvey.access
 
   monit:
     build:
@@ -45,15 +52,32 @@ services:
       - '8888:8080'
 
   fluentd:
-    build: 
-      context: ./fluentd
-      dockerfile: Dockerfile
+    build: ./fluentd
     volumes:
-      - /var/log:/fluentd/log
-       - ./fluentd.conf:/etc/fluentd/fluent.conf
+      - ./fluentd/conf:/fluentd/etc
+    links:
+      - "elasticsearch"
     ports:
       - "24224:24224"
       - "24224:24224/udp"
+
+  elasticsearch:
+    image: elasticsearch
+    expose:
+      - 9200
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    ports:
+      - "9200:9200"
+
+  kibana:
+    image: kibana
+    links:
+      - "elasticsearch"
+    ports:
+      - "5601:5601"
+
+  
 
 volumes:
   mysql_data: 
