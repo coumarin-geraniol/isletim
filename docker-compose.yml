@@ -22,7 +22,7 @@ services:
     logging:
       driver: "fluentd"
       options:
-        fluentd-address: eeac365f8bca:24224
+        fluentd-address: consttier.tech:24224
         tag: limesurvey.access
 
   monit_system:
