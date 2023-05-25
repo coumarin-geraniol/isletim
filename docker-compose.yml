@@ -44,5 +44,16 @@ services:
     ports:
       - '8888:8080'
 
+  fluentd:
+    build: 
+      context: ./fluentd
+      dockerfile: Dockerfile
+    volumes:
+      - /var/log:/fluentd/log
+       - ./fluentd.conf:/etc/fluentd/fluent.conf
+    ports:
+      - "24224:24224"
+      - "24224:24224/udp"
+
 volumes:
   mysql_data: 
